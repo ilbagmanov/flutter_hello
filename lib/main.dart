@@ -11,6 +11,7 @@ import 'package:english_words/english_words.dart';
 
 import 'ui/favorites/FavoritesPage.dart';
 import 'ui/generator/GeneratorPage.dart';
+import 'ui/geoposition/GeopositionPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,6 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
         Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
         page = Favorites();
         break;
+      case 4:
+        Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
+        page = GeopositionPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -106,6 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.cloud_outlined),
               label: "Weather",
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.flag_circle),
+              label: "GPS"
+            )
           ],
           selectedItemColor: Colors.lightBlue,
           unselectedItemColor: Colors.black,
