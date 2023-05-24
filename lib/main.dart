@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => WeatherViewModel()),
         ChangeNotifierProvider(create: (_) => GeneratorPageViewModel()),
         ChangeNotifierProvider(create: (_) => FavoritePageViewModel()),
+        ChangeNotifierProvider(create: (_) => GeneratorPageViewModel());
         ChangeNotifierProvider(create: (_) => MyAppState()),
       ],
       child: MaterialApp(
@@ -68,19 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Widget page;
     switch (selectedIndex) {
-      case 2:
-        page = CameraWidget(camera: widget.camera,);
-        break;
-      case 3:
-        Provider.of<WeatherViewModel>(context).fetchWeatherData();
-        page = WeatherWidget();
-        break;
       case 0:
         page = GeneratorPage();
         break;
       case 1:
         Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
         page = Favorites();
+        break;
+      case 2:
+        page = CameraWidget(camera: widget.camera,);
+        break;
+      case 3:
+        Provider.of<WeatherViewModel>(context).fetchWeatherData();
+        page = WeatherWidget();
         break;
       case 4:
         Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
