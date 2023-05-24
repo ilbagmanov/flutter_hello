@@ -27,7 +27,7 @@ class GeneratorPage extends StatelessWidget {
         children: [
           BigCard(pair: pair),
           SizedBox(height: 10),
-          Row(
+          Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
