@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/ui/camera/Camera.dart';
 import 'package:namer_app/ui/favorites/FavoritesPageViewModel.dart';
 import 'package:namer_app/ui/generator/GeneratorPageViewModel.dart';
-import 'package:namer_app/ui/weather/WeatherViewModel.dart';
 import 'package:namer_app/ui/weather/WeatherPage.dart';
+import 'package:namer_app/ui/weather/WeatherViewModel.dart';
 import 'package:provider/provider.dart';
-import 'package:english_words/english_words.dart';
 
 import 'ui/favorites/FavoritesPage.dart';
 import 'ui/generator/GeneratorPage.dart';
