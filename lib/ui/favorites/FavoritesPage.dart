@@ -15,15 +15,16 @@ class Favorites extends StatelessWidget {
       );
     }
 
+
     return ListView(
       children: [
         Padding(
           padding: EdgeInsets.all(20),
-          child: Text('You have ${favoritesVm.favorites.length} favorites:'),
+          child: Text('You have ${favoritesVm.favorites.length} words:', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
         ),
         for (var favorite in favoritesVm.favorites)
           ListTile(
-              leading: Icon(Icons.favorite), title: Text(favorite.word.toLowerCase())),
+              leading: Icon(Icons.data_usage_sharp), title: Text(favorite.word.toLowerCase(),)),
       ],
     );
   }
