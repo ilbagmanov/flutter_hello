@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/ui/camera/Camera.dart';
 import 'package:namer_app/ui/favorites/FavoritesPageViewModel.dart';
 import 'package:namer_app/ui/generator/GeneratorPageViewModel.dart';
+import 'package:namer_app/ui/geoposition/GeopositionPageViewModel.dart';
 import 'package:namer_app/ui/weather/WeatherPage.dart';
 import 'package:namer_app/ui/weather/WeatherViewModel.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => WeatherViewModel()),
         ChangeNotifierProvider(create: (_) => GeneratorPageViewModel()),
         ChangeNotifierProvider(create: (_) => FavoritePageViewModel()),
-        ChangeNotifierProvider(create: (_) => GeneratorPageViewModel());
+        ChangeNotifierProvider(create: (_) => GeopositionPageViewModel()),
         ChangeNotifierProvider(create: (_) => MyAppState()),
       ],
       child: MaterialApp(
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = WeatherWidget();
         break;
       case 4:
-        Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
+        Provider.of<GeopositionPageViewModel>(context).get();
         page = GeopositionPage();
         break;
       default:

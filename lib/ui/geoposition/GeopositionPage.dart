@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../main.dart';
 
-class GeopositionPage extends StatelessWidget {
+class GeopositionPage extends StatelessWidget { // GeopositionPageViewModel
   @override
   Widget build(BuildContext context) {
     var favoritesVm = context.watch<FavoritePageViewModel>();
