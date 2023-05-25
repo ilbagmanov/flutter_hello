@@ -28,15 +28,17 @@ class WeatherWidget extends StatelessWidget {
 
     return ListView(
       children: [
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: Text('Weather'),
+        Card(
+          child: Text(' ☁ Weather  ☁', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20,)),
         ),
         for (var city in weathers.response.data as List<Weather>)
           ListTile(
-            leading: Icon(Icons.wb_sunny_sharp),
-            title: Text("${city.name} ${city.tempF}℉"),
-            subtitle: Text("${city.weatherDesc}. Window speed is ${city.windSpeed}"),
+            shape: RoundedRectangleBorder( //<-- SEE HERE
+              side: BorderSide(width: 2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: Text("${city.name}\nTemp: ${city.tempC}˚C 🌡", style: const TextStyle(fontWeight: FontWeight.bold),),
+            subtitle: Text("${city.weatherDesc}.\nWind speed is ${city.windSpeed}"),
           ),
       ],
     );
