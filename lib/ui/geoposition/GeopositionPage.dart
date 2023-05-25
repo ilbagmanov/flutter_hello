@@ -7,6 +7,7 @@ class GeopositionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.greenAccent,
       body: Center(
         child: FutureBuilder(
           future: Geolocator.getCurrentPosition(),
