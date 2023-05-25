@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:namer_app/ui/favorites/FavoritesPageViewModel.dart';
-import 'package:provider/provider.dart';
-
-import '../../main.dart';
+import 'package:geolocator/geolocator.dart';
 
 class GeopositionPage extends StatelessWidget {
+  String location = "no";
+
   @override
   Widget build(BuildContext context) {
-    var favoritesVm = context.watch<FavoritePageViewModel>();
-
-    if (favoritesVm.favorites.isEmpty) {
-      return Center(
-        child: Text("No favorites yet"),
-      );
-    }
-
-
-    return ListView(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: Text('You have ${favoritesVm.favorites.length} words:', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder(
+          future: Geolocator.getCurrentPosition(),
+          builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+            if (snapshot.hasData) {
+              Position position = snapshot.requireData;
+              return Text('Lat: ${position.latitude}, Long: ${position.longitude}');
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
         ),
-        for (var favorite in favoritesVm.favorites)
-          ListTile(
-              leading: Icon(Icons.data_usage_sharp), title: Text(favorite.word.toLowerCase(),)),
-      ],
+      ),
     );
+
+  }
+
+  Future<String> getData() async {
+    Future<Position> position =
+        Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    var value = await position;
+    location = "---- $value.longitude $value.latitude";
+
+    return location;
+  }
+
+  void someFunction() async {
+    String data = await getData();
+    // Здесь можно обработать полученные данные
+    print(data); // "data"
   }
 }

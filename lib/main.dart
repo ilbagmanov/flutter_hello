@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/ui/camera/Camera.dart';
 import 'package:namer_app/ui/favorites/FavoritesPageViewModel.dart';
 import 'package:namer_app/ui/generator/GeneratorPageViewModel.dart';
-import 'package:namer_app/ui/weather/WeatherViewModel.dart';
 import 'package:namer_app/ui/weather/WeatherPage.dart';
+import 'package:namer_app/ui/weather/WeatherViewModel.dart';
 import 'package:provider/provider.dart';
-import 'package:english_words/english_words.dart';
 
 import 'ui/favorites/FavoritesPage.dart';
 import 'ui/generator/GeneratorPage.dart';
@@ -69,13 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Widget page;
     switch (selectedIndex) {
-      case 2:
-        page = CameraWidget(camera: widget.camera,);
-        break;
-      case 3:
-        Provider.of<WeatherViewModel>(context).fetchWeatherData();
-        page = WeatherWidget();
-        break;
       case 0:
         page = GeneratorPage();
         break;
@@ -83,8 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
         Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
         page = Favorites();
         break;
+      case 2:
+        page = CameraWidget(camera: widget.camera,);
+        break;
+      case 3:
+        Provider.of<WeatherViewModel>(context).fetchWeatherData();
+        page = WeatherWidget();
+        break;
       case 4:
-        Provider.of<FavoritePageViewModel>(context).fetchFavoritesData();
         page = GeopositionPage();
         break;
       default:
