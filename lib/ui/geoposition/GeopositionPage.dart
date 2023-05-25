@@ -6,21 +6,36 @@ class GeopositionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<Position> position =
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    position.then((value) => () {
-      location = "---- $value.longitude $value.latitude";
-    });
-
     return Scaffold(
       body: Center(
-        child: Text(
-          'Location: $location',
-          style: TextStyle(fontSize: 20),
-
+        child: FutureBuilder(
+          future: Geolocator.getCurrentPosition(),
+          builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+            if (snapshot.hasData) {
+              Position position = snapshot.requireData;
+              return Text('Lat: ${position.latitude}, Long: ${position.longitude}');
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
         ),
       ),
     );
+
   }
 
+  Future<String> getData() async {
+    Future<Position> position =
+        Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    var value = await position;
+    location = "---- $value.longitude $value.latitude";
+
+    return location;
+  }
+
+  void someFunction() async {
+    String data = await getData();
+    // Здесь можно обработать полученные данные
+    print(data); // "data"
+  }
 }
