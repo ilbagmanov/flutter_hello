@@ -41,14 +41,14 @@ class GeneratorPage extends StatelessWidget {
                   appState.toggleFavorite();
                 },
                 icon: Icon(icon),
-                label: Text('Save to dict'),
+                label: Text('Save to dict', style: const TextStyle(fontSize: 25),),
               ),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
                 },
-                child: Text('I know'),
+                child: Text('I know', style: const TextStyle(fontSize: 25)),
               ),
             ],
           ),
@@ -70,15 +70,10 @@ class BigCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
+      fontSize: 80,
+      color: Colors.black
     );
 
-    return Card(
-        color: theme.colorScheme.primary,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(pair.first,
-              style: style, semanticsLabel: pair.first),
-        ));
+    return Text(pair.first, style: style, semanticsLabel: pair.first);
   }
 }
