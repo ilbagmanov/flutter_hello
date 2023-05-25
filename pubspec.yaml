@@ -24,6 +24,7 @@ dependencies:
   drift: ^2.6.0
   sqlite3_flutter_libs: ^0.5.5
   sqlite3: ^1.7.0
+  sensors_plus: 3.0.1
 
 dev_dependencies:
   flutter_test:
